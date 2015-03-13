@@ -9,3 +9,8 @@
 package "docker" do
   action :install
 end
+
+service "docker" do
+  supports :status => true, :restart => true, :reload => true
+  action [:start, :enable]
+end

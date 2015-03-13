@@ -19,7 +19,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "1028", "--cpus", "1"]
   end
   
-  config.vm.provision :shell, :path => "provision.sh"
   config.vm.provision "chef_solo" do |chef|
     chef.cookbooks_path = ["chef-repo/cookbooks", "chef-repo/site-cookbooks"]
     
