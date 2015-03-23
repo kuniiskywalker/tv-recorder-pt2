@@ -30,8 +30,8 @@ end
 # カードリーダ用ソフトウェアをインストール
 cookbook_file "/usr/local/src/pcsc-perl-1.4.13.tar.bz2" do
   mode 0777
-  owner "admin"
-  group "admin"
+  owner "root"
+  group "root"
 end
 
 bash 'make and install pcsc-perl' do
@@ -48,8 +48,8 @@ end
 
 cookbook_file "/usr/local/src/pcsc-tools-1.4.23.tar.gz" do
   mode 0777
-  owner "admin"
-  group "admin"
+  owner "root"
+  group "root"
 end
 
 bash 'make and install pcsc-tools' do
@@ -77,8 +77,8 @@ end
 
 cookbook_file "/usr/local/src/c44e16dbb0e2.zip" do
   mode 0777
-  owner "admin"
-  group "admin"
+  owner "root"
+  group "root"
 end
 
 bash 'make and install arib25' do
@@ -95,8 +95,8 @@ end
 # recpt1（録画ソフト）のインストール
 cookbook_file "/usr/local/src/pt1-drv_20111001.tar.gz" do
   mode 0777
-  owner "admin"
-  group "admin"
+  owner "root"
+  group "root"
 end
 
 bash 'make and install recpt1' do
@@ -117,8 +117,8 @@ end
 ## PT2ドライバのインストール
 cookbook_file "/usr/local/src/tip.tar.bz2" do
   mode 0777
-  owner "admin"
-  group "admin"
+  owner "root"
+  group "root"
 end
 
 bash 'make and install pt2driver' do
