@@ -8,13 +8,13 @@
 #
 
 user "admin" do
-  password "9b721Q"
+  password "$1$nO/7dfil$GFTXijrZzs9hMHaheC0Os/"
   action   [:create]
 end
 
 group "wheel" do
   action  :modify
-  members ["admin", "vagrant"]
+  members ["admin"]
   append  true
 end
 
