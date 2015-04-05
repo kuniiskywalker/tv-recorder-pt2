@@ -86,14 +86,11 @@
 # max protocol = used to define the supported protocol. The default is NT1. You
 # can set it to SMB2 if you want experimental SMB2 support.
 #
-	workgroup = MYGROUP
-	server string = Samba Server Version %v
-
-;	netbios name = MYSERVER
-
+workgroup = WORKGROUP
+server string = Samba Server Version %v
+netbios name = Casper
 ;	interfaces = lo eth0 192.168.12.2/24 192.168.13.2/24
-;	hosts allow = 127. 192.168.12. 192.168.13.
-
+hosts allow = 127. 192.168.0.
 ;	max protocol = SMB2
 
 # --------------------------- Logging Options -----------------------------
@@ -235,7 +232,7 @@
 ;	wins server = w.x.y.z
 ;	wins proxy = yes
 
-;	dns proxy = yes
+dns proxy = no
 
 # --------------------------- Printing Options -----------------------------
 #
@@ -318,3 +315,15 @@
 ;	writable = yes
 ;	printable = no
 ;	write list = +staff
+
+[Share]
+#共有させるフォルダ
+path = /home/share/
+#マイネットワークに表示させるか否か
+browsable =yes
+#書き込み可能かどうか
+writable = yes
+#ゲストユーザのログインが可能かどうか
+guest ok = yes
+#読込みのみとするか
+read only = no
