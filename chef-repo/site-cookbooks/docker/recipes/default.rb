@@ -6,8 +6,11 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-package "docker" do
-  action :install
+
+%w{docker device-mapper-event-libs}.each do |pkg|
+  package pkg do
+    action :install
+  end
 end
 
 service "docker" do
