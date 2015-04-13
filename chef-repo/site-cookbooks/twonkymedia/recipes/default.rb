@@ -44,11 +44,23 @@ chmod 755 twonky/twonkymedia.sh
 end
 
 # twonkymedia依存ライブラリ
-package ["ld-linux.so.2", "libstdc++.so.5"] do
-  flush_cache [:before]
+yum_package ["ld-linux.so.2", "libstdc++.so.5"] do
+  action :install
+end
+
+yum_package ["glibc", "nss-softokn-freebl", "libstdc++.so.6"] do
+  action :install
+  arch "i686"
+end
+
+# serviceファイル
+cookbook_file "/etc/systemd/system/multi-user.target.wants/twonkymedia.service" do
+  mode 0777
+  owner "root"
+  group "root"
 end
 
 # service "twonkymedia" do
 #   supports :status => true, :restart => true, :reload => true
-#   action [:start, :enable]
+#   action [:start]
 # end

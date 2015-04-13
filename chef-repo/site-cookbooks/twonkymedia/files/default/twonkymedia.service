@@ -1,0 +1,8 @@
+[Unit]
+Description=twonkymedia
+
+[Service]
+ExecStart=/usr/local/twonky/twonkymedia.sh -D $OPTIONS
+
+[Install]
+WantedBy=multi-user.target
