@@ -12,18 +12,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box_url = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
 
-  config.ssh.forward_agent = true
-  
   config.vm.network :forwarded_port, guest: 80, host: 8080
 
   config.vm.synced_folder ".", "/vagrant", owner: "vagrant", group: "vagrant", mount_options: ["dmode=777", "fmode=777"]
 
   config.vm.provision "chef_solo" do |chef|
-    chef.cookbooks_path = ["chef-repo/cookbooks", "chef-repo/site-cookbooks"]
 
-    chef.add_recipe "docker"
-    chef.add_recipe "security"
-    chef.add_recipe "recpt1"
+    chef.cookbooks_path = ["chef-repo/site-cookbooks"]
+
+    chef.add_recipe "chefdk"
 
   end
 
