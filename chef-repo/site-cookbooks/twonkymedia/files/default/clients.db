@@ -1162,6 +1162,7 @@ NA:Generic DLNA 1.0
 HH:DLNADOC/1.00
 HP:chunked
 XM:DLNA10
+MT:ts,m2t video/x-mp2t-mphl-188
 DB:AUTO
 
 >>
