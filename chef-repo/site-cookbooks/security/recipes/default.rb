@@ -51,6 +51,18 @@ template "sshd_config" do
   mode   "0644"
 end
 
+directory "/root/bin" do
+  owner 'root'
+  group 'root'
+  action :create
+end
+
+cookbook_file "/root/bin/chroot-useradd" do
+  mode  "0755"
+  owner "root"
+  group "root"
+end
+
 service "sshd" do
   action :restart
 end

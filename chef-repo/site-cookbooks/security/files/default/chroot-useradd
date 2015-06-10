@@ -1,0 +1,77 @@
+#!/bin/bash
+#
+# Usage: ./chroot-useradd username [shell]
+#
+
+# Here specify the apps you want into the enviroment
+CMD="bash ls touch mkdir cp mv rm pwd chmod cat vi id rsync ssh scp sftp ping ssh-keygen perl"
+APPS=`which $CMD`
+APPS="${APPS} /usr/libexec/openssh/sftp-server"
+
+# Sanity check
+if [ "$1" = "" ] ; then
+    echo "  Usage: ./chroot-useradd username [shell]"
+    exit 1
+fi
+
+# Obtain username and HomeDir
+CHROOT_USERNAME=$1
+if [ "$2" = "" ] ; then
+    useradd $CHROOT_USERNAME
+else
+    useradd -s $2 $CHROOT_USERNAME
+fi
+chown root:root /home/$CHROOT_USERNAME
+chmod 755 /home/$CHROOT_USERNAME
+usermod -d /home/$CHROOT_USERNAME/./ $CHROOT_USERNAME
+passwd $CHROOT_USERNAME
+rm -f /home/$CHROOT_USERNAME/.* > /dev/null 2>&1
+cd /home/$CHROOT_USERNAME/./
+
+# Create Directories no one will do it for you
+mkdir -p etc
+mkdir -p bin
+mkdir -p usr/bin
+mkdir -p usr/local/bin
+mkdir -p usr/libexec/openssh
+MAKEDEV -d dev -x null zero
+
+# Create short version to /usr/bin/groups
+# On some system it requires /bin/sh, which is generally unnessesary in a  chroot cage
+echo "#!/bin/bash" > usr/bin/groups
+echo "id -Gn" >> usr/bin/groups
+chmod 755 usr/bin/groups
+
+# Add some users to ./etc/paswd
+grep /etc/passwd -e "^root" -e "^$CHROOT_USERNAME" > etc/passwd
+grep /etc/group -e "^root" -e "^$CHROOT_USERNAME" > etc/group
+
+# Copy the apps and the related libs
+for prog in $APPS;
+do
+    cp $prog ./$prog
+    # obtain a list of related libraryes
+    ldd $prog > /dev/null
+    if [ "$?" = 0 ] ; then
+        LIBS=`ldd $prog | awk '{ print $3 }'`
+        for l in $LIBS;
+        do
+            mkdir -p ./`dirname $l` > /dev/null 2>&1
+            cp $l ./$l > /dev/null 2>&1
+        done
+    fi
+done
+
+# From some strange reason these 4 libraries are not in the ldd output, but  without them
+# some stuff will not work, like usr/bin/groups
+cp /lib/libnss_compat.so.2 lib/
+cp /lib/libnsl.so.1 lib/
+cp /lib/libnss_files.so.2 lib/
+cp /lib/ld-linux.so.2 ./lib/
+cp /lib/libc.so.6 lib/
+cp /lib/libm.so.6 lib/
+cp /lib/libpthread.so.0 lib/
+cp /lib/librt.so.1 lib/
+cp /lib/libthread_db.so.1 lib/
+
+exit 0
