@@ -44,13 +44,17 @@ chmod 755 twonky/twonkymedia.sh
 end
 
 # twonkymedia依存ライブラリ
-yum_package ["ld-linux.so.2", "libstdc++.so.5"] do
-  action :install
+%w{ld-linux.so.2 libstdc++.so.5}.each do |suffix|
+  yum_package suffix do
+    action :install
+  end
 end
 
-yum_package ["glibc", "nss-softokn-freebl", "libstdc++.so.6"] do
-  action :install
-  arch "i686"
+%w{glibc nss-softokn-freebl libstdc++.so.6}.each do |suffix|
+  yum_package suffix do
+    action :install
+    arch "i686"
+  end
 end
 
 # serviceファイル

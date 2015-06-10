@@ -36,7 +36,7 @@ bash 'make and install pt2driver' do
   code <<-EOH
 tar -xvlf tip.tar.bz2
 cd pt1-c8688d7d6382/driver
-make
+sudo make
 sudo make install
 sudo modprobe pt1_drv
 echo "/usr/local/lib" >> /etc/ld.so.conf
