@@ -144,7 +144,8 @@ AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
 AcceptEnv XMODIFIERS
 
 # override default of no subsystems
-Subsystem	sftp	/usr/libexec/openssh/sftp-server
+# Subsystem	sftp	/usr/libexec/openssh/sftp-server
+Subsystem sftp internal-sftp
 
 # Uncomment this if you want to use .local domain
 #Host *.local
@@ -157,4 +158,7 @@ Subsystem	sftp	/usr/libexec/openssh/sftp-server
 #	ForceCommand cvs server
 
 Match Group *,!wheel
-ChrootDirectory /home/%u/./
+    ChrootDirectory %h
+    X11Forwarding no
+    AllowTcpForwarding no
+    ForceCommand internal-sftp
