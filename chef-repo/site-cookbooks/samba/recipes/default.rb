@@ -13,11 +13,13 @@
   end
 end
 
-directory "/home/share" do
-  owner 'nobody'
-  group 'nobody'
-  mode '0777'
-  action :create
+%w{/home/share /home/share/data /home/share/tv}.each do |suffix|
+  directory suffix do
+    owner 'nobody'
+    group 'nobody'
+    mode '0777'
+    action :create
+  end
 end
 
 template "/etc/samba/smb.conf" do
