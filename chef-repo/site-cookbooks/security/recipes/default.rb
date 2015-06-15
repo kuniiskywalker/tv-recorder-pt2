@@ -66,3 +66,20 @@ end
 service "sshd" do
   action :restart
 end
+
+cookbook_file "/home/admin/.ssh/id_rsa.pub" do
+  mode 0777
+  owner "admin"
+  group "admin"
+  notifies :run, 'bash[add-in-authorized_keys]', :immediately
+end
+
+bash "add-in-authorized_keys" do
+  action :nothing
+  cwd '/home/admin/.ssh/'
+  code <<-EOH
+cat id_rsa.pub >> authorized_keys
+chmod 600 authorized_keys
+chown admin.admin authorized_keys
+  EOH
+end

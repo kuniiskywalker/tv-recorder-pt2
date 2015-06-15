@@ -57,6 +57,11 @@ end
   end
 end
 
+cookbook_file "/usr/local/twonky/resources/clients.db" do
+  owner "root"
+  group "root"
+end
+
 # serviceファイル
 cookbook_file "/etc/systemd/system/multi-user.target.wants/twonkymedia.service" do
   mode 0777
