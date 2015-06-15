@@ -28,9 +28,13 @@ passwd $CHROOT_USERNAME
 rm -f /home/$CHROOT_USERNAME/.* > /dev/null 2>&1
 cd /home/$CHROOT_USERNAME/./
 
+mkdir /home/$CHROOT_USERNAME/data
+chmod 777 /home/$CHROOT_USERNAME/data
+
 # Create Directories no one will do it for you
 mkdir -p etc
 mkdir -p bin
+mkdir -p lib
 mkdir -p usr/bin
 mkdir -p usr/local/bin
 mkdir -p usr/libexec/openssh
