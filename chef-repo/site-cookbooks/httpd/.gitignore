@@ -1,0 +1,4 @@
+files/*.crt
+files/*.ca-bundle
+files/*.csr
+files/*.key

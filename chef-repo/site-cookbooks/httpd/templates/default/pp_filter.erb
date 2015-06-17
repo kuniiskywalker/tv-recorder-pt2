@@ -1,0 +1,12 @@
+#!/bin/sh
+
+case $1 in
+<% if  defined?(node['https']['host']) %>
+    <% node['https']['host'].each {|data| %>
+        <%= data[:name] %>:<%= data[:port] %>)
+        /bin/echo "<%= data[:passphrase] %>"
+        ;;
+    <% } %>
+<% end %>
+esac
+exit 0

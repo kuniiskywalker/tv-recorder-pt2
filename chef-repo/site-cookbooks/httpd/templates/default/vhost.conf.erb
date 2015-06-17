@@ -1,0 +1,32 @@
+
+<% node['httpd']['http']['hosts'].each {|data| %>
+<VirtualHost *:<%= data[:port] %>>
+  DocumentRoot <%= data[:htdocs] %>
+  ServerName <%=data[:name] %>
+  ErrorLog /var/log/httpd/<%= data[:name] %>-error_log
+  TransferLog /var/log/httpd/<%= data[:name] %>-transfer_log
+  CustomLog /var/log/httpd/<%= data[:name] %>-access_log combined env=!nolog
+  <Directory <%= data[:htdocs] %>>
+    # Options FollowSymLinks Indexes
+    AllowOverride all
+    EnableMMAP Off
+    EnableSendfile Off
+  </Directory>
+</VirtualHost>
+<% } %>
+
+<% node['httpd']['https']['hosts'].each {|data| %>
+<VirtualHost *:<%= data[:port] %>>
+    DocumentRoot <%= data[:htdocs] %>
+    ServerName <%= data[:name] %>
+    ErrorLog /var/log/httpd/<%= data[:name] %>-ssl_error_log
+    CustomLog /var/log/httpd/<%= data[:name] %>-ssl_access_log "combined" env=!no_log
+    SSLEngine on
+    SSLCertificateChainFile /etc/httpd/conf.d/ssl.cabundle/<%= data[:cabundle] %>
+    SSLCertificateFile /etc/httpd/conf.d/ssl.crt/<%= data[:crt] %>
+    SSLCertificateKeyFile /etc/httpd/conf.d/ssl.key/<%= data[:key] %>
+    <Directory "<%= data[:htdocs] %>">
+        AllowOverride All
+    </Directory>
+</VirtualHost>
+<% } %>
