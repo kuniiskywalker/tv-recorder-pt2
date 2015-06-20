@@ -74,7 +74,7 @@ mail_owner = postfix
 #
 #myhostname = host.domain.tld
 #myhostname = virtual.domain.tld
-myhostname = <%= node[:host][:name] %>
+myhostname = <%= node[:postfix][:host] %>
 
 # The mydomain parameter specifies the local internet domain name.
 # The default is to use $myhostname minus the first component.
@@ -82,7 +82,7 @@ myhostname = <%= node[:host][:name] %>
 # parameters.
 #
 #mydomain = domain.tld
-mydomain = <%= node[:host][:name] %>
+mydomain = <%= node[:postfix][:host] %>
 
 # SENDING MAIL
 # 
@@ -695,6 +695,6 @@ smtpd_recipient_restrictions =
 
 message_size_limit = 10485760
 
-virtual_alias_domains = <%= node[:postfix][:domain].join(",") %>
+virtual_alias_domains = <%= node[:postfix][:virtusertable][:hosts].join(",") %>
 
 virtual_maps = hash:/etc/postfix/virtusertable
