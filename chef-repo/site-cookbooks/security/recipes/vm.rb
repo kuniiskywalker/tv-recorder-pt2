@@ -7,6 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# VM→サーバー接続用秘密かぎ設定
 cookbook_file "/home/vagrant/.ssh/id_rsa" do
   mode 0600
   owner "vagrant"
