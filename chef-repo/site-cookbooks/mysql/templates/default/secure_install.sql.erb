@@ -1,0 +1,18 @@
+-- test データベースが存在したら削除
+DROP DATABASE IF EXISTS test;
+
+-- 匿名ユーザの削除
+DELETE FROM mysql.user WHERE user = '';
+
+-- root ユーザのパスワードを設定
+
+<% if node['mysql']['root'] %>
+SET PASSWORD FOR '<%= node['mysql']['root']['name'] %>'@'<%= node['mysql']['root']['host'] %>' = PASSWORD('<%= node['mysql']['root']['password'] %>');
+<% end %>
+
+<% node['mysql']['users'].each {|user| %>
+SET PASSWORD FOR '<%= user.name %>'@'<%= user.host %>' = PASSWORD('<%= user.password %>');
+<% } %>
+
+-- 権限情報をフラッシュ
+FLUSH PRIVILEGES;
