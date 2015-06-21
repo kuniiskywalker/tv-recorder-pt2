@@ -10,6 +10,8 @@
 #    action :install
 #end
 
+package "wget"
+
 execute 'get mysql repository packege' do
   cwd '/tmp'
   command 'wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm'
