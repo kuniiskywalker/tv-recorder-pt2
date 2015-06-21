@@ -51,6 +51,11 @@ template "sshd_config" do
   mode   "0644"
 end
 
+directory "/home/admin/.ssh" do
+  owner "admin"
+  group "admin"
+end
+
 # VM→サーバー接続用公開かぎ設定
 cookbook_file "/home/admin/.ssh/id_rsa.pub" do
   mode 0777
