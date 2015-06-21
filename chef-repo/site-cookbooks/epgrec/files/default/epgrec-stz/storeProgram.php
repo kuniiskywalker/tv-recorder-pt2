@@ -9,6 +9,7 @@
   $key  = "";
   
   // プライオリティ低に
+
   pcntl_setpriority(20);
   
   include_once( INSTALL_PATH . '/DBRecord.class.php' );

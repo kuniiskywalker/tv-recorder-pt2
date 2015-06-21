@@ -9,6 +9,7 @@
   include_once( INSTALL_PATH . '/recLog.inc.php' );
   
   $acpi_timer_path = "/sys/class/rtc/rtc0/wakealarm";	// ここは書き換える必要があるPCがあるかもしれない
+
   
   $settings = Settings::factory();
   

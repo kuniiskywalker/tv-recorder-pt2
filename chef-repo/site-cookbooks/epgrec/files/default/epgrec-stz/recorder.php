@@ -12,6 +12,7 @@ define("DEBUG", true );
 
 // 後方互換性
 
+
 if( ! defined( "RECORDER_CMD" ) ) {
 	define( "RECORDER_CMD", INSTALL_PATH . "/recorder.php" );
 }

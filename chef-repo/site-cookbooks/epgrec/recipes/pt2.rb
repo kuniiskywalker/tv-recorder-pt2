@@ -30,15 +30,16 @@ cookbook_file "/usr/local/src/tip.tar.bz2" do
   group "root"
 end
 
+# pt2ドライバーインストール後はrebootしないと正常に動作しない
 bash 'make and install pt2driver' do
   action :run
   cwd '/usr/local/src'
   code <<-EOH
 tar -xvlf tip.tar.bz2
 cd pt1-c8688d7d6382/driver
-sudo make
+make
 sudo make install
-sudo modprobe pt1_drv
 echo "/usr/local/lib" >> /etc/ld.so.conf
+sudo modprobe pt1_drv
   EOH
 end

@@ -37,3 +37,20 @@ end
 template "/etc/httpd/conf.d/epgrec.conf" do
   notifies :restart, 'service[httpd]'
 end
+
+
+bash 'make and install epgrec' do
+  action :run
+  cwd '/usr/local/bin/epgrec'
+  code <<-EOH
+mv do-record.sh.pt1 do-record.sh
+sudo chmod 755 do-record.sh
+sudo chmod 755 recorder.php
+sudo chmod 755 getepg.php
+sudo chmod 755 storeProgram.php
+sudo chmod 755 gen-thumbnail.sh
+ln -s /home/share/tv tv
+sudo cp cron.d/getepg /etc/cron.d/
+  EOH
+end
+

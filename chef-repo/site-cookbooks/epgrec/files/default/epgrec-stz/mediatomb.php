@@ -14,6 +14,7 @@ try {
   $recs = DBRecord::createRecords(RESERVE_TBL );
 
 // DB接続
+
   $dbh = mysql_connect( $settings->db_host, $settings->db_user, $settings->db_pass );
   if( $dbh === false ) exit( "mysql connection fail" );
   $sqlstr = "use ".$settings->db_name;

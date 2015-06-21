@@ -115,5 +115,7 @@ chmod 777 autogen.sh
 ./configure --prefix=/usr --enable-b25
 make
 sudo make install
+# 共有ライブラリの依存関係情報を更新します。
+ldconfig
   EOH
 end

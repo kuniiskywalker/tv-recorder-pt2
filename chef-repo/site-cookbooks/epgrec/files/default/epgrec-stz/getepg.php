@@ -17,6 +17,7 @@
   }
   
   // デーモン化
+
   function daemon() {
   	if( pcntl_fork() != 0 )
  		exit();

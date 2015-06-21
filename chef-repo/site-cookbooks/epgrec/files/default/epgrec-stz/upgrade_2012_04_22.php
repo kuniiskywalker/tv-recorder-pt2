@@ -9,6 +9,7 @@ include_once(INSTALL_PATH . '/tableStruct.inc.php' );
 
 // mysqli::multi_queryは動作がいまいちなので使わない
 
+
 function multi_query( $sqlstrs, $dbh ) {
 	$error = false;
 	
