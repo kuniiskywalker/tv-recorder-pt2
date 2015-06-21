@@ -22,6 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     chef.cookbooks_path = ["chef-repo/site-cookbooks"]
 
+    chef.add_recipe "security"
     chef.add_recipe "security::vm"
 
   end
