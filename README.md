@@ -37,8 +37,8 @@ knife solo cook root@122.249.239.253
 
 ## 手動マウント
 ```
-mount -t ext3 /dev/sda /home/share/data/
-mount -t ext3 /dev/sdb /home/share/tv/
+sudo mount -t ext3 /dev/sda /home/share/data/
+sudo mount -t ext3 /dev/sdb /home/share/tv/
 ```
 
 # twonkyの設定
