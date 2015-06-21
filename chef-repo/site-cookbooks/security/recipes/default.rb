@@ -38,3 +38,8 @@ bash "change-SELINUX-disabled" do
 sudo setenforce Permissive
   EOH
 end
+
+service "firewalld" do
+  ignore_failure true
+  action [:disable, :stop]
+end
