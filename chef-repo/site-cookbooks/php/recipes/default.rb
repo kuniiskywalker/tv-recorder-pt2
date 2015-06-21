@@ -17,3 +17,9 @@ template "/etc/php.ini" do
   mode "0644"
   notifies :restart, "service[httpd]"
 end
+
+directory "/var/log/php" do
+  owner "root"
+  group "root"
+  mode "0700"
+end
