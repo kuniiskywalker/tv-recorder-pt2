@@ -43,6 +43,7 @@ bash 'make and install epgrec' do
   action :run
   cwd '/usr/local/bin/epgrec'
   code <<-EOH
+sudo usermod -s /bin/bash apache
 mv do-record.sh.pt1 do-record.sh
 sudo chmod 755 do-record.sh
 sudo chmod 755 recorder.php
