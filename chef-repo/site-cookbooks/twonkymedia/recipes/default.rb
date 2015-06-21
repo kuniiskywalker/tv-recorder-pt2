@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+package "unzip"
+
 # townkymedia6.0はlibgcc32bitに依存しているので一旦64bit版を削除
 # 依存性を無視しないと関連パッケージもアンインストールされてしまうので、--nodepsオプション追加
 rpm_package "libgcc-4.8.2-16.2.el7_0.x86_64" do
