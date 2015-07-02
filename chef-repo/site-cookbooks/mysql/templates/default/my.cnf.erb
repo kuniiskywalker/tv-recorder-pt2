@@ -1,6 +1,9 @@
 # For advice on how to change settings please see
 # http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html
 
+[client]
+default-character-set=utf8
+
 [mysqld]
 #
 # Remove leading # and set to the amount of RAM for the most important data
@@ -33,7 +36,6 @@ slow_query_log
 slow_query_log_file=/var/log/mysql/slow.log
 long_query_time = 1
 
-default-character-set = utf8
 skip-character-set-client-handshake
 character-set-server = utf8
 collation-server = utf8_general_ci
@@ -43,8 +45,8 @@ init-connect = SET NAMES utf8
 log-error=/var/log/mysqld.log
 pid-file=/var/run/mysqld/mysqld.pid
 
-[mysql]
-default-character-set = utf8
-
 [mysqldump]
-default-character-set = utf8
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8
