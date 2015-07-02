@@ -49,6 +49,7 @@ sudo chmod 755 recorder.php
 sudo chmod 755 getepg.php
 sudo chmod 755 storeProgram.php
 sudo chmod 755 gen-thumbnail.sh
+sudo chmod 755 recommendProgram.php
 ln -s /home/share/tv tv
 sudo cp cron.d/getepg /etc/cron.d/
   EOH
@@ -67,6 +68,7 @@ sudo sed -i 's/\r//' recorder.php
 sudo sed -i 's/\r//' storeProgram.php
 sudo sed -i 's/\r//' upgrade_2012_04_22.php
 sudo sed -i 's/\r//' upgrade_db.php
+sudo sed -i 's/\r//' recommendProgram.php
 
 sudo sed -i 's/\r//' do-record.sh
 sudo sed -i 's/\r//' do-record.sh.friio

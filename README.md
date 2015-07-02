@@ -20,15 +20,19 @@ cd /vagrant/chef-repo
 knife solo prepare root@122.249.239.253
 ```
 
+
+
 1回目
 
 ```
+cd /vagrant/chef-repo
 knife solo cook root@122.249.239.253
 ```
 
 2回目移行（root権限でsshできなくなるため）
 
 ```
+cd /vagrant/chef-repo
 knife solo cook admin@122.249.239.253
 ```
 

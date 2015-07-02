@@ -2,3 +2,4 @@ SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 29 */2 * * * apache /usr/local/bin/epgrec/getepg.php
+29 10 * * * apache /usr/local/bin/epgrec/recommendProgram.php
