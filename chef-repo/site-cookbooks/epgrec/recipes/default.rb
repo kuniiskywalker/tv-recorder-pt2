@@ -38,7 +38,6 @@ template "/etc/httpd/conf.d/epgrec.conf" do
   notifies :restart, 'service[httpd]'
 end
 
-
 bash 'make and install epgrec' do
   action :run
   cwd '/usr/local/bin/epgrec'
@@ -50,8 +49,8 @@ sudo chmod 755 getepg.php
 sudo chmod 755 storeProgram.php
 sudo chmod 755 gen-thumbnail.sh
 sudo chmod 755 recommendProgram.php
+rm -Rf tv
 ln -s /home/share/tv tv
-sudo cp cron.d/getepg /etc/cron.d/
   EOH
 end
 
@@ -77,5 +76,14 @@ sudo sed -i 's/\r//' do-record.sh.pt1
 sudo sed -i 's/\r//' gen-thumbnail.sh
 sudo sed -i 's/\r//' cron.d/getepg
 sudo sed -i 's/\r//' init.d/epgwakealarm
+  EOH
+end
+
+bash 'install getepg cron' do
+  action :run
+  cwd '/usr/local/bin/epgrec'
+  code <<-EOH
+sudo cp cron.d/getepg /etc/cron.d/
+sudo chmod 600 /etc/cron.d/getepg
   EOH
 end
