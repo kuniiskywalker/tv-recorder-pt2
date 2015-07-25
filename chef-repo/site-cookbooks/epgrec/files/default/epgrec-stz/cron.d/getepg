@@ -3,3 +3,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 29 */2 * * * apache /usr/local/bin/epgrec/getepg.php
 29 10 * * * apache /usr/local/bin/epgrec/recommendProgram.php
+
+0 0 * * 1 apache /usr/local/bin/epgrec/check_tv_delete.sh
+0 0 * * 1 apache /usr/local/bin/epgrec/delete_tv.sh

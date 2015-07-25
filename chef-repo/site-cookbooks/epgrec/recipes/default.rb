@@ -7,9 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-package "expect" do
-  action :install
-end
+package "expect"
+package "mailx"
 
 remote_directory "/usr/local/src/epgdump" do
   source "epgdump-stz"
@@ -48,6 +47,8 @@ sudo chmod 755 recorder.php
 sudo chmod 755 getepg.php
 sudo chmod 755 storeProgram.php
 sudo chmod 755 gen-thumbnail.sh
+sudo chmod 755 check_tv_delete.sh
+sudo chmod 755 delete_tv.sh
 sudo chmod 755 recommendProgram.php
 rm -Rf tv
 ln -s /home/share/tv tv
@@ -74,6 +75,8 @@ sudo sed -i 's/\r//' do-record.sh.friio
 sudo sed -i 's/\r//' do-record.sh.fsusb2n
 sudo sed -i 's/\r//' do-record.sh.pt1
 sudo sed -i 's/\r//' gen-thumbnail.sh
+sudo sed -i 's/\r//' check_tv_delete.sh
+sudo sed -i 's/\r//' delete_tv.sh
 sudo sed -i 's/\r//' cron.d/getepg
 sudo sed -i 's/\r//' init.d/epgwakealarm
   EOH
