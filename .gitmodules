@@ -1,0 +1,3 @@
+[submodule "chef-repo/cookbooks/nodejs"]
+	path = chef-repo/cookbooks/nodejs
+	url = git@github.com:kuniiskywalker/chef-nodejs.git
