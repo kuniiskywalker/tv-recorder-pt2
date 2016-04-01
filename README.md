@@ -1,5 +1,4 @@
-
-# 仮想環境
+# TV Recorder on PT2
 
 ## Guest Additions Versionのバージョンアップ
 
@@ -17,23 +16,21 @@ cd /vagrant/chef-repo
 ```
 
 ```
-knife solo prepare root@122.249.239.253
+knife solo prepare root@{REMOTE SERVER}
 ```
-
-
 
 1回目
 
 ```
 cd /vagrant/chef-repo
-knife solo cook root@122.249.239.253
+knife solo cook root@{REMOTE SERVER}
 ```
 
 2回目移行（root権限でsshできなくなるため）
 
 ```
 cd /vagrant/chef-repo
-knife solo cook admin@122.249.239.253
+knife solo cook admin@{REMOTE SERVER}
 ```
 
 # ディスクマウント
